@@ -1,11 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Car List</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %}
+	<h2>Car List</h2>
+{% endblock title %}
+	
+
+{% block content %}
+<br>
+<div class="gallery">
 	{% for car in cars %}
 		<a href="{{car.get_absolute_url}}">
+			{% if car.car_img %}
+            	<img class="img-thumbnail" src="{{car.car_img.url}}" width="300" height="200">
+       	</a>
+       		 {% endif %}
 			<h1>
 				{{car.make}} - {{car.model}}
 				<small>
@@ -13,7 +21,7 @@
 				</small>
 			</h1>
 		</a>
+</div>
 		<hr>
 	{% endfor %}
-</body>
-</html>
+{% endblock content %}
